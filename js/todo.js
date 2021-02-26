@@ -50,6 +50,7 @@ function setTodoView(myTodos) {
     todoItemControls.classList.add("todo__item__controls");
     var copyIcon = document.createElement("i");
     copyIcon.classList.add("fas", "fa-copy");
+    copyIcon.setAttribute("onclick", `copyTodo('${todo.text}');`);
     var editIcon = document.createElement("i");
     editIcon.classList.add("fas", "fa-pencil-alt");
     var deleteIcon = document.createElement("i");
@@ -96,4 +97,20 @@ function searchTodo(e) {
       setTodoView(searchResult);
     }
   }
+}
+
+function copyTodo(text) {
+  console.log(text);
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(
+    function () {
+      window.alert(`${text} copied to clipboard`);
+    },
+    function (err) {
+      console.error("Could not be copied to clipboard: ", err);
+    }
+  );
 }

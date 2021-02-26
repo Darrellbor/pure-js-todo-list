@@ -1,4 +1,5 @@
 var todos = JSON.parse(localStorage.getItem("todos"));
+var todoCp = [];
 var todoList = document.getElementsByClassName("todo__list")[0];
 
 function renderTodos() {
@@ -53,6 +54,63 @@ function setTodoView(myTodos) {
     copyIcon.setAttribute("onclick", `copyTodo('${todo.text}');`);
     var editIcon = document.createElement("i");
     editIcon.classList.add("fas", "fa-pencil-alt");
+    editIcon.setAttribute("onclick", `editTodo('${todo.id}');`);
+    var deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fas", "fa-trash-alt");
+    deleteIcon.setAttribute("onclick", `deleteTodo('${todo.id}');`);
+
+    todoItemControls.append(copyIcon, editIcon, deleteIcon);
+    todoItemFooter.append(todoItemDate, todoItemControls);
+    todoItem.append(todoItemContent, todoItemFooter);
+    todoList.appendChild(todoItem);
+  });
+}
+
+//set edit todo view
+function setEditTodoView(myTodos, todoId) {
+  todoList.innerHTML = "";
+
+  myTodos.forEach((todo, idx) => {
+    var todoItem = document.createElement("div");
+    todoItem.classList.add("todo__item");
+
+    var todoItemContent = document.createElement("div");
+    todoItemContent.classList.add("todo__item__content");
+    if (todo.id == parseInt(todoId, 10)) {
+      console.log(idx, parseInt(todoId, 10), todo);
+      var editForm = document.createElement("form");
+      editForm.id = "editTodo";
+      var editInput = document.createElement("input");
+      editInput.classList.add("editTodo__form");
+      editInput.type = "text";
+      editInput.value = todo.text;
+      editInput.placeholder = "Edit Todo...";
+      var editBtn = document.createElement("button");
+      editBtn.classList.add("editTodo__btn");
+      editBtn.type = "button";
+      editBtn.innerText = "Edit Todo";
+      editBtn.setAttribute("onclick", `editTodoText('${todo.id}');`);
+      editForm.append(editInput, editBtn);
+      todoItemContent.appendChild(editForm);
+    } else {
+      todoItemContent.innerText = todo.text;
+    }
+
+    var todoItemFooter = document.createElement("div");
+    todoItemFooter.classList.add("todo__item__footer");
+
+    var todoItemDate = document.createElement("div");
+    todoItemDate.classList.add("todo__item__date");
+    todoItemDate.innerText = moment(todo.date).format("dddd, Do MMMM YYYY. LT");
+
+    var todoItemControls = document.createElement("div");
+    todoItemControls.classList.add("todo__item__controls");
+    var copyIcon = document.createElement("i");
+    copyIcon.classList.add("fas", "fa-copy");
+    copyIcon.setAttribute("onclick", `copyTodo('${todo.text}');`);
+    var editIcon = document.createElement("i");
+    editIcon.classList.add("fas", "fa-pencil-alt");
+    editIcon.setAttribute("onclick", `editTodo('${todo.id}');`);
     var deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fas", "fa-trash-alt");
     deleteIcon.setAttribute("onclick", `deleteTodo('${todo.id}');`);
@@ -89,10 +147,10 @@ function searchTodo(e) {
   var value = document.querySelector(".searchTodo__form").value;
   if (todos && todos.length > 0) {
     if (value === "") {
-      setTodoView(todos);
+      setTodoView(todosCp);
     } else {
-      var todosCp = [...todos];
-      var searchResult = todosCp.filter(
+      todosCp = [...todos];
+      var searchResult = todos.filter(
         (todo) => todo.text.toLowerCase().indexOf(value) > -1
       );
       setTodoView(searchResult);
@@ -121,4 +179,19 @@ function deleteTodo(todoId) {
     localStorage.setItem("todos", JSON.stringify(todos));
     renderTodos();
   }
+}
+
+function editTodo(todoId) {
+  setEditTodoView(todos, todoId);
+}
+
+function editTodoText(id) {
+  var value = document.querySelector(".editTodo__form").value;
+  for(var i = 0; i < todos.length; i++) {
+      if(todos[i].id == parseInt(id, 10)) {
+        todos[i].text = value;
+      }
+  }
+  localStorage.setItem("todos", JSON.stringify(todos));
+  setTodoView(todos);
 }

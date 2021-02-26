@@ -114,7 +114,12 @@ button {
   padding: 8px;
 }
 
-.todo__item__content > input {
+.todo__item__content > form {
+  max-width: 100%;
+  width: 100%;
+}
+
+.todo__item__content > form > input {
   max-width: 96%;
   border: none;
   background-color: transparent;

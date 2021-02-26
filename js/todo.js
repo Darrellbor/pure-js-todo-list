@@ -55,6 +55,7 @@ function setTodoView(myTodos) {
     editIcon.classList.add("fas", "fa-pencil-alt");
     var deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fas", "fa-trash-alt");
+    deleteIcon.setAttribute("onclick", `deleteTodo('${todo.id}');`);
 
     todoItemControls.append(copyIcon, editIcon, deleteIcon);
     todoItemFooter.append(todoItemDate, todoItemControls);
@@ -100,7 +101,6 @@ function searchTodo(e) {
 }
 
 function copyTodo(text) {
-  console.log(text);
   if (!navigator.clipboard) {
     fallbackCopyTextToClipboard(text);
     return;
@@ -113,4 +113,12 @@ function copyTodo(text) {
       console.error("Could not be copied to clipboard: ", err);
     }
   );
+}
+
+function deleteTodo(todoId) {
+  if (window.confirm("Deleting todo... Click ok to continue")) {
+    todos = todos.filter((todo) => todo.id != parseInt(todoId, 10));
+    localStorage.setItem("todos", JSON.stringify(todos));
+    renderTodos();
+  }
 }

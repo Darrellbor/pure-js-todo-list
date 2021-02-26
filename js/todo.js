@@ -131,14 +131,18 @@ document
 function addTodo(e) {
   e.preventDefault();
   var value = document.querySelector(".addTodo__form").value;
-  var newTodo = {
-    id: todos ? todos.length : 0,
-    text: value,
-    date: new Date(),
-  };
-  todos ? todos.unshift(newTodo) : (todos = [newTodo]);
-  localStorage.setItem("todos", JSON.stringify(todos));
-  renderTodos();
+  if (value !== "") {
+    var newTodo = {
+      id: todos ? todos.length : 0,
+      text: value,
+      date: new Date(),
+    };
+    todos ? todos.unshift(newTodo) : (todos = [newTodo]);
+    localStorage.setItem("todos", JSON.stringify(todos));
+    renderTodos();
+  } else {
+    window.alert("Todo text to add cannot be empty!");
+  }
 }
 
 function searchTodo(e) {
@@ -186,11 +190,15 @@ function editTodo(todoId) {
 
 function editTodoText(id) {
   var value = document.querySelector(".editTodo__form").value;
-  for(var i = 0; i < todos.length; i++) {
-      if(todos[i].id == parseInt(id, 10)) {
+  if (value !== "") {
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id == parseInt(id, 10)) {
         todos[i].text = value;
       }
+    }
+    localStorage.setItem("todos", JSON.stringify(todos));
+    setTodoView(todos);
+  } else {
+    window.alert("Todo to edit cannot be empty!");
   }
-  localStorage.setItem("todos", JSON.stringify(todos));
-  setTodoView(todos);
 }

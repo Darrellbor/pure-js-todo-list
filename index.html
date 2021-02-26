@@ -26,7 +26,7 @@
     <title>Pure Js Todo List</title>
   </head>
 
-  <body>
+  <body onload="renderTodos()">
     <!-- Header -->
     <header>
       <h1>Todo List</h1>
@@ -35,19 +35,20 @@
     <!-- Content -->
     <div class="content">
       <div class="controls">
-        <form>
+        <form id="addTodo">
           <input type="text" name="add" class="addTodo__form" />
-          <button class="addTodo__btn">Add Todo</button>
+          <button class="addTodo__btn" type="submit">Add Todo</button>
         </form>
 
         <form>
           <input
             type="text"
-            name="add"
+            id="searchTodo"
+            name="search"
             class="searchTodo__form"
             placeholder="Search Todos..."
           />
-          <button class="searchTodo__btn">
+          <button id="searchTodo__btn" class="searchTodo__btn">
             <i class="fas fa-search"></i> Search Todo
           </button>
         </form>
@@ -94,6 +95,8 @@
         </div>
       </div>
     </div>
+    <!-- Linking moment to the page-->
+    <script src="./js/moment.js"></script>
     <!-- Linking the javascript to the page -->
     <script src="./js/todo.js"></script>
   </body>

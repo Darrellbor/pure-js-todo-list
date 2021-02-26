@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="Pure Js Todo List" />
+    <meta name="keywords" content="pure js todo list html css javascript" />
+    <meta
+      name="description"
+      content="This is a simple html, css and javascript based todo list"
+    />
+    <!-- Linking the fonts for the todo list-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Stick&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Linking font awesome -->
+    <script
+      src="https://kit.fontawesome.com/fed03aec47.js"
+      samesite="None"
+      secure=""
+    ></script>
+    <!-- Linking the stylesheet to the page-->
+    <link rel="stylesheet" href="./css/todo.css" />
+    <title>Pure Js Todo List</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Todo List</h1>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="controls">
+        <form>
+          <input type="text" name="add" class="addTodo__form" />
+          <button class="addTodo__btn">Add Todo</button>
+        </form>
+
+        <form>
+          <input
+            type="text"
+            name="add"
+            class="searchTodo__form"
+            placeholder="Search Todos..."
+          />
+          <button class="searchTodo__btn">
+            <i class="fas fa-search"></i> Search Todo
+          </button>
+        </form>
+      </div>
+
+      <div class="todo__list">
+        <div class="todo__list__empty">
+          <i class="fas fa-box-open"></i><br />
+          <h1>There are no todos to display...</h1>
+        </div>
+        <div class="todo__item">
+          <div class="todo__item__content">A todo item</div>
+          <div class="todo__item__footer">
+            <div class="todo__item__date">
+              Friday, 26th February 2021. 12:16PM
+            </div>
+            <div class="todo__item__controls">
+              <i class="fas fa-copy"></i>
+              <i class="fas fa-pencil-alt"></i>
+              <i class="fas fa-trash-alt"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="todo__item">
+          <div class="todo__item__content">
+            <input
+              type="text"
+              value="A todo item 2"
+              placeholder="Edit todo..."
+            />
+            <button class="editTodo__btn">Edit Todo</button>
+          </div>
+          <div class="todo__item__footer">
+            <div class="todo__item__date">
+              Friday, 26th February 2021. 12:26PM
+            </div>
+            <div class="todo__item__controls">
+              <i class="fas fa-copy"></i>
+              <i class="fas fa-pencil-alt"></i>
+              <i class="fas fa-trash-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Linking the javascript to the page -->
+    <script src="./js/todo.js"></script>
+  </body>
+</html>

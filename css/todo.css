@@ -1,0 +1,147 @@
+body {
+  font-family: "Lato", sans-serif;
+  padding: 10px;
+}
+
+header {
+  font-family: "Stick", sans-serif;
+  margin-top: 100px;
+}
+
+header > h1 {
+  text-align: center;
+  font-size: 45px;
+}
+
+.content {
+  max-width: 1100px;
+  margin: 50px auto;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+form {
+  display: flex;
+  min-width: 50%;
+  margin-right: 40px;
+}
+
+input {
+  outline: none;
+  border: 1px solid;
+  padding: 16px;
+  width: 100%;
+  box-shadow: 0 5px 40px #00000008;
+  background-color: transparent;
+  border-radius: 10px !important;
+  color: #03182d;
+}
+
+input:focus {
+  border-color: #240e49;
+  border-radius: 10px !important;
+}
+
+input:hover {
+  border-color: #240e49;
+  border-radius: 10px !important;
+}
+
+button {
+  width: 100%;
+  border-radius: 10px;
+  margin-left: -15px;
+  border: 2px solid #03182d;
+  background-color: #03182d;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.todo__list {
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.todo__list__empty {
+  text-align: center;
+  margin-top: 170px;
+}
+
+.todo__list__empty > i {
+  color: #03182d;
+  font-size: 60px;
+}
+
+.todo__item {
+  padding: 20px;
+  border: 1px solid #03182d;
+  border-radius: 8px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.todo__item__content {
+  padding: 30px 0;
+  display: flex;
+}
+
+.todo__item__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__item__controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__item__controls > i {
+  color: #03182d;
+  font-size: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 8px;
+  transition: all 0.5s ease-in-out;
+}
+
+.todo__item__controls > i:hover {
+  background-color: #03182d4d;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.todo__item__content > input {
+  max-width: 96%;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+@media (max-width: 500px) {
+  .controls {
+    flex-wrap: wrap;
+  }
+
+  form {
+    margin: auto;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .todo__item {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .todo__item__footer {
+    flex-wrap: wrap;
+  }
+
+  .todo__item__controls {
+    margin-top: 20px;
+  }
+}

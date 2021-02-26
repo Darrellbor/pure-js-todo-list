@@ -77,7 +77,6 @@ function setEditTodoView(myTodos, todoId) {
     var todoItemContent = document.createElement("div");
     todoItemContent.classList.add("todo__item__content");
     if (todo.id == parseInt(todoId, 10)) {
-      console.log(idx, parseInt(todoId, 10), todo);
       var editForm = document.createElement("form");
       editForm.id = "editTodo";
       var editInput = document.createElement("input");

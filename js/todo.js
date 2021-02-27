@@ -140,6 +140,7 @@ function addTodo(e) {
     todos ? todos.unshift(newTodo) : (todos = [newTodo]);
     localStorage.setItem("todos", JSON.stringify(todos));
     renderTodos();
+    document.querySelector(".addTodo__form").value = "";
   } else {
     window.alert("Todo text to add cannot be empty!");
   }
